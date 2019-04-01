@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    protected $table = 'image';
+    protected $table = 'images';
     // 1-* COMMENTS
     public function comments(){
         return $this->hasMany('App\Comment');
@@ -19,6 +19,6 @@ class Image extends Model
 
     //*-1 
     public function user(){
-        return $this->hasMany('App\User', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 }
