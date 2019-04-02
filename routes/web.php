@@ -3,7 +3,7 @@ use App\Image;
 
 
 Route::get('/', function () {
-    $images = Image::all();
+    /* $images = Image::all();
 
     foreach ($images as $image) {
         //echo $image->id.'<br>';
@@ -22,6 +22,10 @@ Route::get('/', function () {
         echo "Likes: ".count($image->likes);
         echo '<hr>';
     }
-    die();
+    die(); */
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
