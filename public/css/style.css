@@ -48,6 +48,10 @@
     width: 100%;
 }
 
+.image-detail{
+    max-height: 500px;
+}
+
 .pub_image .card-body{
     padding: 0px;
 }
@@ -73,3 +77,6 @@
     width: 20px;
 }
 
+.pub_image_detail .comments{
+    padding: 20px;
+}

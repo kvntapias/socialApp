@@ -9,7 +9,7 @@ class Image extends Model
     protected $table = 'images';
     // 1-* COMMENTS
     public function comments(){
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment')->orderBy('id', 'desc');
     }
     
     //1-* LIKES
