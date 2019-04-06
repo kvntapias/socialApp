@@ -44,3 +44,13 @@ Route::get('/imagen/{id}','ImageController@detail')->name('image.detail');
 Route::post('/comment/save','CommentController@save')->name('comment.save');
 
 Route::get('/comment/delete/{id}','CommentController@delete')->name('comment.delete');
+
+
+//like save
+Route::get('/like/{image_id}','LikeController@like')->name('like.save');
+Route::get('/dislike/{image_id}','LikeController@dislike')->name('like.delete');
+//my likes pub 
+Route::get('/likes', 'LikeController@index')->name('likes.index');
+
+//user profile
+Route::get('/profile/{id}', 'UserController@profile')->name('profile');
