@@ -49,4 +49,10 @@ window.addEventListener('load',function(){
 
     dislike();   
     like();
+
+
+    //buscador de personas
+    $("#buscador").submit(function(e){
+        $(this).attr('action','/people/'+$("#buscador #search").val());
+    });
 });
