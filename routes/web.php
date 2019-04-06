@@ -56,3 +56,8 @@ Route::get('/likes', 'LikeController@index')->name('likes.index');
 Route::get('/profile/{id}', 'UserController@profile')->name('profile');
 //delete comments & likes and IMAGES
 Route::get('/image/delete/{id}','ImageController@delete')->name('image.delete');
+
+//edit image return view
+Route::get('/edit/{id}','ImageController@edit')->name('image.edit');
+//update image
+Route::post('/image/update','ImageController@update')->name('image.update');

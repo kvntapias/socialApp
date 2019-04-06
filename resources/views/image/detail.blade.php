@@ -22,7 +22,7 @@
                         </div>
                         <div class="card-body">
                             <div class="image-container image-detail">
-                                    <img src="{{ route('image.file',['filename' => $image->image_path]) }}" alt="">
+                                    <img class="avatar" src="{{ route('image.file',['filename' => $image->image_path]) }}" alt="">
                             </div>
 
                             <div class="description">
@@ -56,8 +56,26 @@
                             </div>
                             @if (Auth::user() && Auth::user()->id == $image->user->id)
                                 <div class="actions">
-                                    <a class="btn btn-sm  btn-primary" href="">Editar</a>
-                                <a class="btn btn-sm btn-danger" href="{{route('image.delete', ['id'=> $image->id ])}}">Borrar</a>
+                                    <a class="btn btn-sm  btn-primary" href="{{route('image.edit', ['id'=> $image->id ])}}">Editar</a>
+                                    <a class="btn btn-sm btn-danger"  href="" data-toggle="modal" data-target="#exampleModal">Borrar</a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">¿ Estás seguro de eliminar la publicación ?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                             <a class="btn btn-danger" href="{{route('image.delete', ['id'=> $image->id ])}}" >Borrar</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
                             @endif
                             
