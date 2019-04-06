@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\File;
 
 
 use App\Image;
+use App\Comment;
+use App\Like;
 
 class ImageController extends Controller
 {
@@ -63,5 +65,36 @@ class ImageController extends Controller
         return view('image/detail',[
             'image' => $image
         ]);
+    }
+
+    public function delete($id){
+        $user = Auth::user();
+        $image = Image::find($id);
+        $comments = Comment::where('image_id', $id)->get();
+        $likes = Like::where('image_id', $id)->get();
+
+        if ($user && $image && $image->user->id == $user->id){
+            //eliminar commentarios
+            if ($comments && count($comments) >= 1) {
+                foreach ($comments as $comment) {
+                    $comment->delete();
+                }
+            }
+            //eliminar likes
+            if ($likes && count($likes) >= 1) {
+                foreach ($likes as $like) {
+                    $like->delete();
+                }
+            }
+            //eliminar ficheros de imagen
+            Storage::disk('images')->delete($image->image_path);
+            //eliminar registro de db
+            $image->delete();
+            $message = array('message' => 'La imagen se ha eliminado');
+        }else{
+            $message = array('message' => 'La 
+            imagen no se ha eliminado');
+        }
+        return redirect()->route('home')->with($message);
     }
 }
